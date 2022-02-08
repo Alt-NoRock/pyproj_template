@@ -3,11 +3,11 @@
 
 name: Python application
 
-# on:
-#   push:
-#     branches: [ main, develop ]
-#   pull_request:
-#     branches: [ main, develop ]
+on:
+  push:
+    branches: [ main, develop, feature_github_workflow]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
   build:
