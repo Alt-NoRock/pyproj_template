@@ -5,7 +5,8 @@ name: Python application
 
 on:
   push:
-    branches: [ main, develop, feature_github_workflow]
+    paths:
+      - 'src/*'
   pull_request:
     branches: [ main, develop ]
 
@@ -27,15 +28,6 @@ jobs:
         pip install pipenv
         pipenv install
         pipenv install --dev
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        pipenv run python3 -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        pipenv run python3 -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Lint with bandit
-      run: |
-        pipenv run python3 -m bandit .
     - name: Test with pytest
       run: |
         export PYTHONPATH=./src
